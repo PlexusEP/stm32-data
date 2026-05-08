@@ -252,7 +252,7 @@ fn create_peripherals_for_chip(
 
         // The comparators for g4 family uses the same enable and reset bits as SYSCFG
         let syscfg_for_comp = || {
-            if chip_name.starts_with("STM32G4") && pname.starts_with("COMP") {
+            if (chip_name.starts_with("STM32G4") || chip_name.starts_with("STM32U0")) && pname.starts_with("COMP") {
                 peripheral_to_clock
                     .match_peri_clock(rcc_block.1, "SYSCFG")
                     .map(|mut rcc_info| {
